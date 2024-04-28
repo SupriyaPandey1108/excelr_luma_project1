@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="TestLumaProject">
+    <classes>
+      <class name="com.LumaTestCases.createAccoutPageTest"/>
+      <class name="com.LumaTestCases.gearPageTest"/>
+      <class name="com.LumaTestCases.womenPageTest"/>
+      <class name="com.LumaTestCases.menPageTest"/>
+      <class name="com.LumaTestCases.cartPageTest"/>
+      <class name="com.LumaTestCases.whatIsNewPageTest"/>
+      <class name="com.LumaTestCases.salePageTest"/>
+      <class name="com.LumaTestCases.signInPageTest"/>
+      <class name="com.luma.base.LumaBase"/>
+      <class name="com.LumaTestCases.trainingPageTest"/>
+      <class name="com.LumaTestCases.footerLinkPageTest"/>
+    </classes>
+  </test> <!-- TestLumaProject -->
+</suite> <!-- Suite -->
