@@ -7,6 +7,7 @@ import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.luma.page.signInPage;
 
@@ -20,14 +21,29 @@ public class signInPageTest {
 		sp.Initialize();
 	}
 	
-	@Test
-	public void validate_SignIn() {
-		sp.signIn();
+//	@Test
+//	public void validate_SignIn() {
+//		sp.signIn();
+//		String actMessage = sp.successLoginpage();
+//		String expMessage = "Welcome, Supriyaa Test!";
+//		AssertJUnit.assertEquals(actMessage, expMessage);
+//	}
+	
+	@Test (dataProvider = "getExcelData")
+	public void validate_SignIn(String email, String pass) {
+		sp.signIn(email, pass);
 		String actMessage = sp.successLoginpage();
 		String expMessage = "Welcome, Supriyaa Test!";
 		AssertJUnit.assertEquals(actMessage, expMessage);
 	}
 	
+	@DataProvider
+	public Object[][] getExcelData() {
+		String filePath = "./TestData2.xlsx";
+		String sheetName = "SignIn";
+		return Utility.ExcelData.getData(filePath, sheetName);
+		}
+		
 	@Test
 	public void validate_PasswordReset() {
 		sp.forgotPassword();

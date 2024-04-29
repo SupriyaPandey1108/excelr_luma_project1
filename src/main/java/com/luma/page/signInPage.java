@@ -6,10 +6,17 @@ import com.luma.base.LumaBase;
 
 public class signInPage extends LumaBase {
 	
-	public void signIn() {
+//	public void signIn() {
+//		driver.findElement(By.partialLinkText("Sign In")).click();
+//		driver.findElement(By.name("login[username]")).sendKeys("supsy2000@gmail.com");
+//		driver.findElement(By.name("login[password]")).sendKeys("aabbcc#123");
+//		driver.findElement(By.id("send2")).click();
+//	}
+	
+	public void signIn(String email, String pass) {
 		driver.findElement(By.partialLinkText("Sign In")).click();
-		driver.findElement(By.name("login[username]")).sendKeys("supsy2000@gmail.com");
-		driver.findElement(By.name("login[password]")).sendKeys("aabbcc#123");
+		driver.findElement(By.name("login[username]")).sendKeys(email);
+		driver.findElement(By.name("login[password]")).sendKeys(pass);
 		driver.findElement(By.id("send2")).click();
 	}
 	

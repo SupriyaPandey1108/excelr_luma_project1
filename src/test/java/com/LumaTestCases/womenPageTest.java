@@ -5,6 +5,7 @@ import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.luma.page.signInPage;
@@ -50,13 +51,20 @@ public class womenPageTest {
 		AssertJUnit.assertEquals(expQuan, actQuan);
 	}
 	
-	@Test
-	public void validate_addToWishList() {
-		sp.signIn();
+	@Test (dataProvider = "getExcelData")
+	public void validate_addToWishList(String email, String pass) {
+		sp.signIn(email, pass);
 		String actmessage = wp.addToWishList();
 		String expmessage = "Olivia 1/4 Zip Light Jacket has been added to your Wish List. Click here to continue shopping.";
 		AssertJUnit.assertEquals(actmessage, expmessage);
 	}
+	
+	@DataProvider
+	public Object[][] getExcelData() {
+		String filePath = "./TestData2.xlsx";
+		String sheetName = "SignIn";
+		return Utility.ExcelData.getData(filePath, sheetName);
+		}
 	
 	@AfterMethod
 	public void closeBrowser() {

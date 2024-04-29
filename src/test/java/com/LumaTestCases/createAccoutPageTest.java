@@ -23,17 +23,24 @@ public class createAccoutPageTest {
 		ca.Initialize();
 	}
 	
-	@Test
-	public void Validate_Negative_CreateAccount() {
-		ca.createAccountNegative();
+	@Test (dataProvider = "getExcelDataNegative")
+	public void Validate_Negative_CreateAccount(String fn) {
+		ca.createAccountNegative(fn);
 		String expErrorMessage = "This is a required field.";
 		String actErrorMessage = ca.errorMessage();
 		AssertJUnit.assertEquals(actErrorMessage, expErrorMessage);
 	}
 	
-	@Test
-	public void validate_CreateAccount() {
-		ca.createAccount();
+	@DataProvider
+	public Object[][] getExcelDataNegative() {
+		String filePath = "./TestData2.xlsx";
+		String sheetName = "CreateAccountNegative";
+		return Utility.ExcelData.getData(filePath, sheetName);
+		}
+	
+	@Test (dataProvider = "getExcelData")
+	public void validate_CreateAccount(String fn, String ln, String email, String pass, String cpass) {
+		ca.createAccount(fn, ln, email, pass, cpass);
 		String expMessage = "Thank you for registering with Main Website Store.";
 		String actMessage = ca.successMessage();
 		AssertJUnit.assertEquals(expMessage, actMessage);
@@ -41,7 +48,7 @@ public class createAccoutPageTest {
 	
 	@DataProvider
 	public Object[][] getExcelData() {
-		String filePath = "./TestData.xlsx";
+		String filePath = "./TestData2.xlsx";
 		String sheetName = "CreateAccount";
 		return Utility.ExcelData.getData(filePath, sheetName);
 		}
